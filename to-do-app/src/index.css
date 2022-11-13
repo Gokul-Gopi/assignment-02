@@ -1,0 +1,48 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap");
+
+:root {
+  --background--color: #fff4e8;
+  --primary-purple: #60024d;
+  --primary-pink: #fb8a83;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", sans-serif;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4rem 1rem;
+  min-height: 100vh;
+  background-color: var(--background--color);
+}
+
+h1 {
+  display: flex;
+  gap: 0.2rem;
+  align-items: center;
+  color: var(--primary-purple);
+  margin-top: 5rem;
+  margin-bottom: 1.8rem;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 30rem;
+  max-width: 30rem;
+}
+
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  width: 100%;
+  margin-top: 2rem;
+}

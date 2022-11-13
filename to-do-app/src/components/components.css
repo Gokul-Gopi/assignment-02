@@ -1,0 +1,68 @@
+.add-task {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.add-task::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: var(--primary-pink);
+  height: 0.17rem;
+  width: 90%;
+  transform: scale(0, 1);
+  transition: all 0.3s;
+  z-index: 1;
+}
+
+.add-task:focus-within::after {
+  transform: scale(1, 1);
+}
+
+.add-task input {
+  font-size: 1.2rem;
+  padding: 0.5rem;
+  background-color: var(--background--color);
+  border: none;
+  outline: none;
+  width: 90%;
+  border-bottom: 1px solid var(--primary-pink);
+}
+
+.add-task button {
+  width: 10%;
+  background-color: transparent;
+  border: none;
+  color: var(--primary-pink);
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.task {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  border: 1px solid var(--primary-purple);
+  border-radius: 0.4rem;
+  padding: 0.8rem 1rem;
+  width: 100%;
+}
+
+.task input {
+  accent-color: var(--primary-purple);
+  height: 1rem;
+  width: 1rem;
+}
+
+.task button {
+  background-color: transparent;
+  color: red;
+  margin-left: auto;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
