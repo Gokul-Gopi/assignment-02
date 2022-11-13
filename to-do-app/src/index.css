@@ -36,7 +36,6 @@ main {
   flex-direction: column;
   align-items: center;
   width: 30rem;
-  max-width: 30rem;
 }
 
 .task-list {
@@ -45,4 +44,25 @@ main {
   gap: 0.8rem;
   width: 100%;
   margin-top: 2rem;
+  height: 50vh;
+  overflow-y: auto;
+}
+
+.task-list::-webkit-scrollbar {
+  width: 7px;
+}
+
+.task-list::-webkit-scrollbar-track {
+  background: #d8d8d8;
+}
+
+.task-list::-webkit-scrollbar-thumb {
+  background: var(--primary-purple);
+  border-radius: 5px;
+}
+
+@media screen and (max-width: 600px) {
+  main {
+    width: 90%;
+  }
 }

@@ -40,6 +40,7 @@
   color: var(--primary-pink);
   font-size: 2rem;
   cursor: pointer;
+  outline: none;
 }
 
 .task {
