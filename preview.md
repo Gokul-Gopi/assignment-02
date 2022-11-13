@@ -1,2 +1,2 @@
-Click to preview
+## Previews
 ✨ [to-do-app](https://to-do-assignment.netlify.app/)
