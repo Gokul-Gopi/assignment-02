@@ -1,13 +1,14 @@
 import { useState } from "react";
 import "./index.css";
-
-import "./index.css";
 import { winningCombinations } from "./utils";
+import { FaUndoAlt } from "react-icons/fa";
 
 function App() {
   //default values of all the 9 cells are null
   const [cells, setCells] = useState(Array(9).fill(null));
   const [xPlaying, setXPlaying] = useState(true);
+  const [winner, setWinner] = useState(null);
+  const [isGameDrawn, setGameDrawn] = useState(false);
 
   // select hover effect style (class), based on the player's turn (X/O)
   const hoverEffectClass = xPlaying ? "x-turn" : "o-turn";
@@ -19,26 +20,43 @@ function App() {
     //3. that particular cell is marked with the value (X/O), while others being null or the previous value
     const value = xPlaying ? "X" : "O";
     const udpatedCells = cells.map((e, idx) => (idx === cellIndex ? value : e));
-    checkWhoWon(udpatedCells);
     setCells(udpatedCells);
+
+    //4. check if there is a winner
+    //5. if no winner, check if it is a draw (all cells are not-empty) else set the winner
+    const winner = checkForWinner(udpatedCells);
+    if (!winner && udpatedCells.every((e) => e !== null)) {
+      setGameDrawn(true);
+    } else {
+      setWinner(winner);
+    }
   };
 
-  const checkWhoWon = (cells) => {
+  //returns the winner if a winning condition is met
+  const checkForWinner = (cells) => {
     for (let i = 0; i < winningCombinations.length; i++) {
       const combination = winningCombinations[i];
       const [a, b, c] = combination;
-      // console.log(a, b, c);
-      // console.log("cells: " + cells[a], cells[b], cells[c]);
       if (cells[a] && cells[a] === cells[b] && cells[b] === cells[c]) {
-        console.log(xPlaying ? "X won" : "O won");
-        break;
+        return xPlaying ? "X" : "O";
       }
     }
   };
 
+  const resetGame = () => {
+    setCells(Array(9).fill(null));
+    setXPlaying(true);
+    setWinner(false);
+    setGameDrawn(null);
+  };
+
   return (
     <div className="App">
-      <div className="board">
+      <h1>Tic Tac Toe</h1>
+      <div
+        className="board"
+        style={{ pointerEvents: winner || isGameDrawn ? "none" : "initial" }}
+      >
         {cells.map((cell, idx) => {
           return (
             <div
@@ -58,6 +76,22 @@ function App() {
           );
         })}
       </div>
+      {winner && (
+        <div className="result">
+          <p>{winner} Won, Congrats!</p>
+          <button onClick={resetGame}>
+            <FaUndoAlt />
+          </button>
+        </div>
+      )}
+      {isGameDrawn && (
+        <div className="result">
+          <p>It's a draw</p>
+          <button onClick={resetGame}>
+            <FaUndoAlt />
+          </button>
+        </div>
+      )}
     </div>
   );
 }

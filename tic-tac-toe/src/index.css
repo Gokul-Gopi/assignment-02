@@ -9,9 +9,22 @@
 
 .App {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+  background-image: radial-gradient(
+    circle farthest-corner at 10% 20%,
+    rgba(97, 186, 255, 1) 0%,
+    rgba(166, 239, 253, 1) 90.1%
+  );
+}
+
+h1 {
+  margin-bottom: 2rem;
+  color: white;
+  font-weight: normal;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
 }
 
 .board {
@@ -29,14 +42,14 @@
   border-radius: 0.4rem;
   cursor: pointer;
   font-size: 4rem;
+  background-color: white;
 }
 
 .cell:hover {
-  box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.7);
+  box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.8);
 }
 
 .cell.x-turn:hover::after {
-  /* box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.6); */
   content: "X";
   position: absolute;
   top: 50%;
@@ -56,5 +69,24 @@
   opacity: 0.2;
 }
 
-/* .x-turn::after {
-} */
+.result {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.result p {
+  color: white;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+  font-size: 3rem;
+}
+
+.result button {
+  background: transparent;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  font-size: 2rem;
+  color: rgb(89, 89, 217);
+}
