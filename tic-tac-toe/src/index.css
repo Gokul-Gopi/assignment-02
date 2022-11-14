@@ -90,3 +90,18 @@ h1 {
   font-size: 2rem;
   color: rgb(89, 89, 217);
 }
+
+@media screen and (max-width: 500px) {
+  h1 {
+    font-size: 1.4rem;
+  }
+
+  .board {
+    grid-template-columns: repeat(3, 5rem);
+    grid-template-rows: repeat(3, 5rem);
+  }
+
+  .result p {
+    font-size: 1.5rem;
+  }
+}
