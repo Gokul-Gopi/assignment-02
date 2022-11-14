@@ -1,17 +1,16 @@
 import { useState } from "react";
 import "./index.css";
 import { winningCombinations } from "./utils";
-import { FaUndoAlt } from "react-icons/fa";
+import { Cell, Result } from "./components";
 
 function App() {
   //default values of all the 9 cells are null
   const [cells, setCells] = useState(Array(9).fill(null));
+
+  // indicates the player with value X is playing
   const [xPlaying, setXPlaying] = useState(true);
   const [winner, setWinner] = useState(null);
   const [isGameDrawn, setGameDrawn] = useState(false);
-
-  // select hover effect style (class), based on the player's turn (X/O)
-  const hoverEffectClass = xPlaying ? "x-turn" : "o-turn";
 
   //marks the cell with X or O
   const markCellWithValue = (cellIndex) => {
@@ -34,6 +33,7 @@ function App() {
 
   //returns the winner if a winning condition is met
   const checkForWinner = (cells) => {
+    //loop over the winning-combinations and check if the cells on those indices have the same value (X/O)
     for (let i = 0; i < winningCombinations.length; i++) {
       const combination = winningCombinations[i];
       const [a, b, c] = combination;
@@ -59,38 +59,25 @@ function App() {
       >
         {cells.map((cell, idx) => {
           return (
-            <div
+            <Cell
               key={`box${idx}`}
-              // only show the hover effect if the cell is empty/null
-              className={`cell ${!cell && hoverEffectClass}`}
-              onClick={() => {
-                //the conditiion make sures the value(X/O) is only added in an empty cell and not allowing overidding of value in a cell
-                if (!cell) {
-                  markCellWithValue(idx);
-                  setXPlaying((preState) => !preState);
-                }
-              }}
-            >
-              {cell}
-            </div>
+              index={idx}
+              value={cell}
+              xPlaying={xPlaying}
+              setXPlaying={setXPlaying}
+              markCellWithValue={markCellWithValue}
+            />
           );
         })}
       </div>
       {winner && (
-        <div className="result">
-          <p>{winner} Won, Congrats!</p>
-          <button onClick={resetGame}>
-            <FaUndoAlt />
-          </button>
-        </div>
+        <Result
+          message={`${winner} Won, Congrats!`}
+          resetCallback={resetGame}
+        />
       )}
       {isGameDrawn && (
-        <div className="result">
-          <p>It's a draw</p>
-          <button onClick={resetGame}>
-            <FaUndoAlt />
-          </button>
-        </div>
+        <Result message="It's a draw" resetCallback={resetGame} />
       )}
     </div>
   );
