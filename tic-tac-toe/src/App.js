@@ -22,7 +22,7 @@ function App() {
     setCells(udpatedCells);
 
     //4. check if there is a winner
-    //5. if no winner, check if it is a draw (all cells are not-empty) else set the winner
+    //5. if no winner, check if it is a draw (when all cells are not-empty) else set the winner
     const winner = checkForWinner(udpatedCells);
     if (!winner && udpatedCells.every((e) => e !== null)) {
       setGameDrawn(true);
